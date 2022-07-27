@@ -1,4 +1,8 @@
 const User = require('../models/user')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const constants = require('../../../constants')
+
 
 const getUsers = async (req, res) => {
   try {
@@ -13,6 +17,11 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
+    const hashedPassword = bcrypt.hashSync(req.body.password, constants.saltRounds);
+
+    req.body.password = hashedPassword
+    console.log(hashedPassword)
+    
     const user = new User(req.body);
     const newUser = await user.save()
     res.status(200).json(newUser)
@@ -36,6 +45,10 @@ const getUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+  console.log(req.token);
+  const id = jwt.verify(req.token, process.env.JWT_SECRET)
+  console.log(id);
+  
   try {
     const _id = req.params.id;
     const user = await User.findByIdAndUpdate(_id, req.body)
