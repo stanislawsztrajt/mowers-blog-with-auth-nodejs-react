@@ -5,11 +5,11 @@ const userServices = require('../services/user')
 
 const router = express.Router()
 
-router.get('/users', userController.getUsers)
-router.post('/users', userServices.hashPassword ,userController.createUser)
-router.get('/users/:id', userController.getUser)
-router.put('/users/:id', userServices.verifyToken, userServices.isCorrectUser, userServices.hashPassword, userController.updateUser)
-router.delete('/users/:id', userServices.verifyToken, userServices.isCorrectUser ,userController.deleteUser)
+router.get('/users', userController.get)
+router.post('/users', userServices.hashPassword ,userController.create)
+router.get('/users/:id', userController.getAll)
+router.put('/users/:id', userServices.verifyToken, userServices.isCorrectUser, userServices.hashPassword, userController.update)
+router.delete('/users/:id', userServices.verifyToken, userServices.isCorrectUser ,userController.remove)
 
 router.post('/auth/sign-in', authController.signIn)
 

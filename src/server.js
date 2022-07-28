@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser")
 
 // routes
 const userRoutes = require('./api/user/config/routes')
+const mowerRoutes = require('./api/mower/config/routes')
 
 app.use(bodyParser.json())
 app.use(cookieParser())
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 
 // routes
 app.use('/', userRoutes);
+app.use('/mowers', mowerRoutes);
 
 app.listen(8000, () => {
   console.log('server listening on 8000')
