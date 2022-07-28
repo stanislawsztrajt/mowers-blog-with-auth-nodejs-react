@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 })
 
 // routes
-app.use('/users', userRoutes);
+app.use('/', userRoutes);
 
 app.listen(8000, () => {
   console.log('server listening on 8000')
