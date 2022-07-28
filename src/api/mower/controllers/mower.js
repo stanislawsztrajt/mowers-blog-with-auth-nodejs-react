@@ -1,9 +1,9 @@
-const User = require('../models/user')
+const Mower = require('../models/mower')
 
 const get = async (req, res) => {
   try {
-    const users = await User.find()
-    res.status(200).json(users)
+    const mowers = await Mower.find()
+    res.status(200).json(mowers)
   } catch (err) {
     res.status(404).json({
       message: err.message
@@ -13,9 +13,9 @@ const get = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const user = new User(req.body);
-    const newUser = await user.save()
-    res.status(200).json(newUser)
+    const mower = new Mower(req.body);
+    const newMower = await mower.save()
+    res.status(200).json(newMower)
   } catch (err) {
     res.status(404).json({
       message: err.message
@@ -26,8 +26,8 @@ const create = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findById(id)
-    res.status(200).json(user)
+    const mower = await Mower.findById(id)
+    res.status(200).json(mower)
   } catch (err) {
     res.status(404).json({
       message: err.message
@@ -38,10 +38,10 @@ const getAll = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.params.id;
-    const user = await User.findByIdAndUpdate(_id, req.body)
-    const updatedUser = Object.assign(user, req.body)
+    const mower = await Mower.findByIdAndUpdate(_id, req.body)
+    const updatedMower = Object.assign(mower, req.body)
     
-    res.status(200).json(updatedUser)
+    res.status(200).json(updatedMower)
   } catch (err) {
     res.status(404).json({
       message: err.message
@@ -52,8 +52,8 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const _id = req.params.id;
-    const user = await User.findByIdAndDelete(_id)
-    res.status(200).json(user)
+    const mower = await Mower.findByIdAndDelete(_id)
+    res.status(200).json(mower)
   } catch (err) {
     res.status(404).json({
       message: err.message

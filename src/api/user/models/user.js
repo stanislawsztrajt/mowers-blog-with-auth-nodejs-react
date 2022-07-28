@@ -5,22 +5,22 @@ const userSchema = new Schema({
   name: {
     type: String,
     unique: true,
-    minLength: 6,
+    minLength: 3,
     maxLength: 30,
     required: true
   },
   email: {
     type: String,
     unique: true,
-    minLength: 6,
+    minLength: 3,
     maxLength: 30,
     required: true
   },
   password: {
     type: String,
     required: true,
-    minLength: 6,
-    maxLength: 30,
+    minLength: 3,
+    maxLength: 200,
     private: true
   }
 })
